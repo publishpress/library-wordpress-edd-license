@@ -23,6 +23,130 @@
 
 namespace PressShack\EDD_License\Setting\Field;
 
-class License_key {
+use PressShack\EDD_License\License;
 
+class License_key extends Base {
+	/**
+	 * The value for this field
+	 *
+	 * @var string
+	 */
+	protected $license_status = '';
+
+	/**
+	 * The link for the more info link
+	 *
+	 * @var string
+	 */
+	protected $link_more_info = '';
+
+	/**
+	 * The constructor
+	 *
+	 * @param array $args {
+     *     @type  string  $options_group_name  The options group name for the field
+     *     @type  string  $name                The name for the field
+     *     @type  string  $id                  The id for the field
+     *     @type  string  $value               The value for the field
+     *     @type  string  $class               The CSS class for the field
+     *     @type  string  $license_status      The value for the field
+     * }
+	 */
+	public function __construct( $args ) {
+		parent::__construct( $args );
+
+        $defaults = array(
+            'license_status' => License::STATUS_EMPTY_LICENSE,
+            'link_more_info' => '',
+        );
+        $args = wp_parse_args( $args, $defaults );
+
+		$this->license_status = $args['license_status'];
+		$this->link_more_info = $args['link_more_info'];
+    }
+
+	/**
+	 * Returns the field HTML template.
+	 *
+	 * @return string
+	 */
+	protected function get_template()
+	{
+		$html = '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" class="regular-text" />';
+		$html .= '<br/><br/>';
+		$html .= '<strong>{{ lang_status }}: <span class="{{ status_class }}">{{ lang_status_message }}</span>.</strong>';
+		$html .= '<br/><br/>';
+
+        if ( ! License::STATUS_VALID === $this->license_status ) {
+            $html .= '<a href="{{ link_more_info }}" target="_blank" class="" rel="noopener noreferrer" style="display: inline-block; margin-left: 20px;" title="{{ lang_click_here_read_more }}">{{ lang_more_info }}</a>';
+            $html .= '<br/><br/>';
+        }
+
+        $html .= '<hr>';
+
+        return $html;
+	}
+
+	/**
+	 * Returns a string version of this class, with the HTML code for the
+	 * field.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		$license_status_class = "wp-eddli-label-danger";
+
+        switch ($this->license_status) {
+            case License::STATUS_EMPTY_LICENSE:
+                $license_status_message = __( "Missing license", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_EXPIRED:
+                $license_status_message = __( "Your license key is expired", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_REVOKED:
+                $license_status_message = __( "Your license key has been disabled", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_MISSING:
+            case License::STATUS_INVALID:
+                $license_status_message = __( "Invalid license", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_SITE_INACTIVE:
+                $license_status_message = __( "Your license is not active for this URL", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_ITEM_NAME_MISMATCH:
+                $license_status_message = __( "This appears to be an invalid license key for this product", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_NO_ACTIVATIONS_LEFT:
+                $license_status_message = __( "Your license key has reached its activation limit", 'wp-edd-license-integration' );
+                break;
+            case License::STATUS_VALID:
+                $license_status_class = "wp-eddli-label-success";
+                $license_status_message = __( "Activated", 'wp-edd-license-integration' );
+                break;
+            default:
+                $license_status_message = __( "Not validated yet", 'wp-edd-license-integration' );
+                break;
+        }
+
+		$replaces = array(
+			'{{ name }}'                      => $this->name,
+			'{{ id }}'                        => $this->id,
+			'{{ value }}'                     => $this->value,
+			'{{ placeholder }}'               => $this->placeholder,
+			'{{ status_class }}'              => $license_status_class,
+			'{{ options_group_name }}'        => $this->options_group_name,
+			'{{ link_more_info }}'            => $this->link_more_info,
+			'{{ lang_status }}'               => __( 'Status', 'wp-edd-license-integration' ),
+			'{{ lang_status_message }}'       => $license_status_message,
+			'{{ lang_click_here_read_more }}' => __( 'Click here to read more about licenses.', 'wp-edd-license-integration' ),
+			'{{ lang_more_info }}'            => __( 'More information', 'wp-edd-license-integration' ),
+		);
+
+		return str_replace(
+			array_keys( $replaces ),
+			array_values( $replaces ),
+			$this->get_template()
+		);
+	}
 }
