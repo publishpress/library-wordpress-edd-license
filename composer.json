@@ -7,5 +7,10 @@
             "name": "PressShack",
             "email": "help@pressshack.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "PressShack\\EDD_License\\": "lib/"
+        }
+    }
 }
