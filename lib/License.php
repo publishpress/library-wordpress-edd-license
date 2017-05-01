@@ -73,6 +73,13 @@ class License {
 	const STATUS_NO_ACTIVATIONS_LEFT = 'no_activations_left';
 
 	/**
+	 * The constructor
+	 */
+	public function __construct() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
+	}
+
+	/**
 	 * Method that validates a license key.
 	 *
 	 * @param string $license_key
@@ -80,8 +87,7 @@ class License {
 	 *
 	 * @return  mixed
 	 */
-	public function validate_license_key( $license_key, $item_name )
-	{
+	public function validate_license_key( $license_key, $item_name ) {
 		$response = wp_remote_post(
 			PRESSSHACK_LICENSES_API_URL,
 			array(
@@ -133,5 +139,18 @@ class License {
 	 */
 	public function sanitize_license_key( $license_key ) {
 		return preg_replace('/[^a-z0-9\-_]/i', '', $license_key );
+	}
+
+	/**
+	 * Enqueue JS scripts and CSS stylesheets
+	 */
+	public function enqueue_scripts_styles() {
+		wp_enqueue_style(
+			'wp-edd-license-integration',
+			PRESSSHACK_LICENSES_ASSETS_PATH . '/css/edd-license-style.css',
+			false,
+			PRESSSHACK_LICENSES_VERSION,
+			'all'
+		);
 	}
 }

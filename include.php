@@ -25,4 +25,18 @@ if ( ! defined( 'PRESSSHACK_LICENSES_API_URL' ) ) {
     define( 'PRESSSHACK_LICENSES_API_URL', "http://pressshack.com" );
 }
 
+if ( ! defined( 'PRESSSHACK_LICENSES_BASE_PATH' ) ) {
+	$path = str_replace( ABSPATH, '', __DIR__ );
+
+    define( 'PRESSSHACK_LICENSES_BASE_PATH', $path );
+}
+
+if ( ! defined( 'PRESSSHACK_LICENSES_ASSETS_PATH' ) ) {
+    define( 'PRESSSHACK_LICENSES_ASSETS_PATH', get_site_url() . '/' . PRESSSHACK_LICENSES_BASE_PATH . '/assets' );
+}
+
+if ( ! defined( 'PRESSSHACK_LICENSES_VERSION' ) ) {
+    define( 'PRESSSHACK_LICENSES_VERSION', '1.0.0' );
+}
+
 $edd_license_language = new PressShack\EDD_License\Language;

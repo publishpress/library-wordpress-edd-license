@@ -72,9 +72,10 @@ class License_key extends Base {
 	 */
 	protected function get_template()
 	{
-		$html = '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" class="regular-text" />';
+		$html = '<div class="wp-eddli-container">';
+		$html .= '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" class="regular-text" />';
 		$html .= '<br/><br/>';
-		$html .= '<strong>{{ lang_status }}: <span class="{{ status_class }}">{{ lang_status_message }}</span>.</strong>';
+		$html .= '<strong>{{ lang_status }}: <span class="dashicons {{ status_icon_class }}"></span> <span class="{{ status_class }}">{{ lang_status_message }}</span>.</strong>';
 		$html .= '<br/><br/>';
 
         if ( ! License::STATUS_VALID === $this->license_status ) {
@@ -82,7 +83,7 @@ class License_key extends Base {
             $html .= '<br/><br/>';
         }
 
-        $html .= '<hr>';
+        $html .= '<hr></div>';
 
         return $html;
 	}
@@ -95,7 +96,8 @@ class License_key extends Base {
 	 */
 	public function __toString()
 	{
-		$license_status_class = "wp-eddli-label-danger";
+		$license_status_class      = "wp-eddli-label-danger";
+		$license_status_icon_class = "dashicons-warning";
 
         switch ($this->license_status) {
             case License::STATUS_EMPTY_LICENSE:
@@ -121,8 +123,9 @@ class License_key extends Base {
                 $license_status_message = __( "Your license key has reached its activation limit", 'wp-edd-license-integration' );
                 break;
             case License::STATUS_VALID:
-                $license_status_class = "wp-eddli-label-success";
-                $license_status_message = __( "Activated", 'wp-edd-license-integration' );
+				$license_status_class      = "wp-eddli-label-success";
+				$license_status_icon_class = "dashicons-yes";
+				$license_status_message    = __( "Activated", 'wp-edd-license-integration' );
                 break;
             default:
                 $license_status_message = __( "Not validated yet", 'wp-edd-license-integration' );
@@ -134,6 +137,7 @@ class License_key extends Base {
 			'{{ id }}'                        => $this->id,
 			'{{ value }}'                     => $this->value,
 			'{{ placeholder }}'               => $this->placeholder,
+			'{{ status_icon_class }}'         => $license_status_icon_class,
 			'{{ status_class }}'              => $license_status_class,
 			'{{ options_group_name }}'        => $this->options_group_name,
 			'{{ link_more_info }}'            => $this->link_more_info,
