@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PressShack\\EDD_License\\' => array($baseDir . '/lib'),
+    'PublishPress\\EDD_License\\' => array($baseDir . '/core'),
 );

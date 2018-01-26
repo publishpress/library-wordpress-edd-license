@@ -1,9 +1,9 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author PressShack
+ * @author PublishPress
  *
- * Copyright (c) 2017 PressShack
+ * Copyright (c) 2018 PublishPress
  *
  * This file is part of WordPress-EDD-License-Integration
  *
@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PressShack\EDD_License;
+namespace PublishPress\EDD_License;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -91,7 +91,7 @@ class License {
 	 */
 	public function validate_license_key( $license_key, $item_id ) {
 		$response = wp_remote_post(
-			PRESSSHACK_LICENSES_API_URL,
+			PUBLISHPRESS_LICENSES_API_URL,
 			array(
 				'timeout'   => 30,
 				'sslverify' => false,
@@ -149,9 +149,9 @@ class License {
 	public function enqueue_scripts_styles() {
 		wp_enqueue_style(
 			'wp-edd-license-integration',
-			PRESSSHACK_LICENSES_ASSETS_PATH . '/css/edd-license-style.css',
+			PUBLISHPRESS_LICENSES_ASSETS_PATH . '/css/edd-license-style.css',
 			false,
-			PRESSSHACK_LICENSES_VERSION,
+			PUBLISHPRESS_LICENSES_VERSION,
 			'all'
 		);
 	}

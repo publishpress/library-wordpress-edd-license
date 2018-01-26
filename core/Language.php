@@ -1,9 +1,9 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author PressShack
+ * @author PublishPress
  *
- * Copyright (c) 2017 PressShack
+ * Copyright (c) 2018 PublishPress
  *
  * This file is part of WordPress-EDD-License-Integration
  *
@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PressShack\EDD_License;
+namespace PublishPress\EDD_License;
 
 /**
  * Class for language

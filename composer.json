@@ -1,16 +1,16 @@
 {
-    "name": "pressshack/wordpress-edd-license-integration",
+    "name": "publishpress/wordpress-edd-license-integration",
     "type": "library",
     "license": "GPL-2",
     "authors": [
         {
-            "name": "PressShack",
-            "email": "help@pressshack.com"
+            "name": "PublishPress",
+            "email": "help@publishpress.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "PressShack\\EDD_License\\": "lib/"
+            "PublishPress\\EDD_License\\": "core/"
         }
     }
 }

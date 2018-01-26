@@ -9,19 +9,15 @@ class ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
-            'PressShack\\EDD_License\\' => 23,
+            'PublishPress\\EDD_License\\' => 25,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'PressShack\\EDD_License\\' => 
+        'PublishPress\\EDD_License\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/lib',
+            0 => __DIR__ . '/../..' . '/core',
         ),
-    );
-
-    public static $classMap = array (
-        'PressShack\\EDD_License\\Setting\\Field\\License_key' => __DIR__ . '/../..' . '/lib/Setting/Field/license_key.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -29,7 +25,6 @@ class ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$classMap;
 
         }, null, ClassLoader::class);
     }
