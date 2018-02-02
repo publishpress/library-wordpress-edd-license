@@ -10,7 +10,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "PublishPress\\EDD_License\\": "core/"
+            "PublishPress\\EDD_License\\Core\\": "src/core/"
         }
+    },
+    "require-dev": {
+        "lucatume/wp-browser": "^1.22"
     }
 }
