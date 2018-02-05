@@ -26,9 +26,8 @@ namespace PublishPress\EDD_License\Core\Exception;
 use Exception;
 
 // Exit if accessed directly
-if (! defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) {
-	exit;
-}
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+
 
 /**
  * InvalidParams exception.

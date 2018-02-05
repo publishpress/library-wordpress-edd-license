@@ -42,7 +42,7 @@ class ServicesCest
      * @example ["PLUGIN_AUTHOR", "pluginAuthor", "PublishPress"]
      * @example ["PLUGIN_FILE", "pluginFile", "publishpress/publishpress.php"]
      */
-    public function tryToRegisterWithValidContainerAndCheckIfAConstantesWereSetInTheContainer(UnitTester $I, Example $example)
+    public function tryToRegisterWithValidContainerAndCheckIfConstantsWereSetInTheContainer(UnitTester $I, Example $example)
     {
         $const           = $example[0];
         $configAttribute = $example[1];

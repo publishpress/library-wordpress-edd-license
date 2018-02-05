@@ -23,6 +23,10 @@
 
 namespace PublishPress\EDD_License\Core\Setting\Field;
 
+// Exit if accessed directly
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+
+
 class Text extends Base {
 	/**
 	 * Returns the field HTML template.

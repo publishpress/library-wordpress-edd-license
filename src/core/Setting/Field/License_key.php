@@ -25,6 +25,10 @@ namespace PublishPress\EDD_License\Core\Setting\Field;
 
 use PublishPress\EDD_License\Core\License;
 
+// Exit if accessed directly
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+
+
 class License_key extends Base {
 	/**
 	 * The value for this field

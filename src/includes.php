@@ -21,33 +21,17 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) die('No direct script access allowed.');
 
 
 if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 
+     if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION' ) ) {
+        define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION', '2.0.0' );
+    }
+
 	define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED', true );
 }
-
-
-
-// if ( ! defined( 'PUBLISHPRESS_LICENSES_API_URL' ) ) {
-//     define( 'PUBLISHPRESS_LICENSES_API_URL', "http://publishpress.com" );
-// }
-
-// if ( ! defined( 'PUBLISHPRESS_LICENSES_BASE_PATH' ) ) {
-// 	$path = str_replace( ABSPATH, '', __DIR__ );
-
-//     define( 'PUBLISHPRESS_LICENSES_BASE_PATH', $path );
-// }
-
-// if ( ! defined( 'PUBLISHPRESS_LICENSES_ASSETS_PATH' ) ) {
-//     define( 'PUBLISHPRESS_LICENSES_ASSETS_PATH', get_site_url() . '/' . PUBLISHPRESS_LICENSES_BASE_PATH . '/assets' );
-// }
-
-// if ( ! defined( 'PUBLISHPRESS_LICENSES_VERSION' ) ) {
-//     define( 'PUBLISHPRESS_LICENSES_VERSION', '1.1.0' );
-// }
 
 // $edd_license_language = new PublishPress\EDD_License\Language;

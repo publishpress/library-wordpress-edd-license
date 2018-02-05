@@ -1,7 +1,7 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author PublishPress
+ * @author  PublishPress
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -23,14 +23,33 @@
 
 namespace PublishPress\EDD_License\Core;
 
+// Exit if accessed directly
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+
 /**
  * Class for language
  */
-class Language {
-	/**
-	 * Loads the textdomain for the library
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'wp-edd-license-integration', FALSE, basename( __DIR__ ) . '/languages/' );
-	}
+class Language
+{
+    /**
+     * Language constructor.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Loads the textdomain for the library
+     */
+    public function load_textdomain()
+    {
+        load_plugin_textdomain(
+            'wp-edd-license-integration',
+            false,
+            basename(__DIR__) . '/languages/'
+        );
+    }
 }

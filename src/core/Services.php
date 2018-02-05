@@ -26,10 +26,7 @@ namespace PublishPress\EDD_License\Core;
 use EDD_SL_Plugin_Updater;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED'))
-{
-    exit;
-}
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
 
 /**
  * The services for the dependency injection container.
@@ -73,48 +70,63 @@ class Services implements \Pimple\ServiceProviderInterface
     public function register(\Pimple\Container $pimple)
     {
         /*
+         * The config
+         */
+        $pimple['config'] = function(Container $c)
+        {
+            return $this->config;
+        };
+
+        /*
          *
          * Define the constants.
          */
         $pimple['API_URL'] = function (Container $c)
         {
-            return $this->config->apiUrl;
+            return $c['config']->getApiUrl();
         };
 
         $pimple['LICENSE_KEY'] = function (Container $c)
         {
-            return $this->config->licenseKey;
+            return $c['config']->getLicenseKey();
         };
 
         $pimple['LICENSE_STATUS'] = function (Container $c)
         {
-            return $this->config->licenseStatus;
+            return $c['config']->getLicenseStatus();
         };
 
         $pimple['PLUGIN_VERSION'] = function (Container $c)
         {
-            return $this->config->pluginVersion;
+            return $c['config']->getPluginVersion();
         };
 
         $pimple['EDD_ITEM_ID'] = function (Container $c)
         {
-            return $this->config->eddItemId;
+            return $c['config']->getEddItemId();
         };
 
         $pimple['PLUGIN_AUTHOR'] = function (Container $c)
         {
-            return $this->config->pluginAuthor;
+            return $c['config']->getPluginAuthor();
         };
 
         $pimple['PLUGIN_FILE'] = function (Container $c)
         {
-            return $this->config->pluginFile;
+            return $c['config']->getPluginFile();
+        };
+
+        $pimple['ASSETS_BASE_URL'] = function (Container $c)
+        {
+            $basePath = str_replace(ABSPATH, '', realpath(__DIR__ . '/../'));
+
+            return get_site_url() . '/' . $basePath . '/assets';
         };
 
         /*
-         * Define the updater.
+         * Define the update manager.
          */
-        $pimple['updater'] = function (Container $c)
+        $pimple['update_manager'] = function (Container $c)
         {
             return new EDD_SL_Plugin_Updater(
                 $c['API_URL'],
@@ -123,10 +135,26 @@ class Services implements \Pimple\ServiceProviderInterface
                     'version'        => $c['PLUGIN_VERSION'],
                     'license'        => $c['LICENSE_KEY'],
                     'license_status' => $c['LICENSE_STATUS'],
-                    'item_id'        => $c['EDD_IREM_ID'],
+                    'item_id'        => $c['EDD_ITEM_ID'],
                     'author'         => $c['PLUGIN_AUTHOR'],
                 ]
             );
+        };
+
+        /*
+         * Define the license manager.
+         */
+        $pimple['license_manager'] = function (Container $c)
+        {
+            return new License($c);
+        };
+
+        /*
+         * Define the language service.
+         */
+        $pimple['language'] = function (Container $c)
+        {
+            return new Language($c);
         };
     }
 }

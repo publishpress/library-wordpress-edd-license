@@ -24,10 +24,7 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED'))
-{
-    exit;
-}
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
 
 /**
  * The config data for the services.
@@ -101,9 +98,9 @@ class ServicesConfig
             throw new Exception\InvalidParams('Services require a non empty apiUrl attribute.');
         }
 
-        if (!isset($this->licenseKey) || empty($this->licenseKey))
+        if (!isset($this->licenseKey))
         {
-            throw new Exception\InvalidParams('Services require a non empty licenseKey attribute.');
+            throw new Exception\InvalidParams('Services require the licenseKey attribute to be set.');
         }
 
         if (!isset($this->licenseStatus) || empty($this->licenseStatus))

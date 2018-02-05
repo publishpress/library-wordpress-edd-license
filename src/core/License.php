@@ -23,7 +23,8 @@
 
 namespace PublishPress\EDD_License\Core;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+// Exit if accessed directly
+if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
 
 /**
  * Class for license
@@ -74,12 +75,22 @@ class License {
 	 */
 	const STATUS_NO_ACTIVATIONS_LEFT = 'no_activations_left';
 
+    /**
+     * @var Container
+     */
+	protected $container;
+
 	/**
 	 * The constructor
+     *
+     * @param Container $container
 	 */
-	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
-	}
+	public function __construct(Container $container)
+    {
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts_styles'));
+
+        $this->container = $container;
+    }
 
 	/**
 	 * Method that validates a license key.
@@ -91,7 +102,7 @@ class License {
 	 */
 	public function validate_license_key( $license_key, $item_id ) {
 		$response = wp_remote_post(
-			PUBLISHPRESS_LICENSES_API_URL,
+			$this->container['API_URL'],
 			array(
 				'timeout'   => 30,
 				'sslverify' => false,
@@ -149,9 +160,9 @@ class License {
 	public function enqueue_scripts_styles() {
 		wp_enqueue_style(
 			'wp-edd-license-integration',
-			PUBLISHPRESS_LICENSES_ASSETS_PATH . '/css/edd-license-style.css',
+			$this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
 			false,
-			PUBLISHPRESS_LICENSES_VERSION,
+            PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION,
 			'all'
 		);
 	}
