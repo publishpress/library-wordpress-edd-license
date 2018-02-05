@@ -33,5 +33,3 @@ if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED' ) ) {
 
 	define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED', true );
 }
-
-// $edd_license_language = new PublishPress\EDD_License\Language;
