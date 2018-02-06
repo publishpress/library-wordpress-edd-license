@@ -47,14 +47,14 @@ class ServicesConfig
      *
      * @var string
      */
-    protected $licenseKey;
+    protected $licenseKey = '';
 
     /**
      * The status of the license.
      *
      * @var string
      */
-    protected $licenseStatus;
+    protected $licenseStatus = '';
 
     /**
      * The version of the plugin integrating with this library.
@@ -96,16 +96,6 @@ class ServicesConfig
         if (!isset($this->apiUrl) || empty($this->apiUrl))
         {
             throw new Exception\InvalidParams('Services require a non empty apiUrl attribute.');
-        }
-
-        if (!isset($this->licenseKey))
-        {
-            throw new Exception\InvalidParams('Services require the licenseKey attribute to be set.');
-        }
-
-        if (!isset($this->licenseStatus) || empty($this->licenseStatus))
-        {
-            throw new Exception\InvalidParams('Services require a non empty licenseStatus attribute.');
         }
 
         if (!isset($this->pluginVersion) || empty($this->pluginVersion))
