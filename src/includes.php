@@ -28,7 +28,7 @@ if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 
      if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION' ) ) {
-        define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION', '2.0.0' );
+        define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION', '2.0.1' );
     }
 
 	define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED', true );
