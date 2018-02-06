@@ -1,22 +1,32 @@
 {
-    "name": "publishpress/wordpress-edd-license-integration",
-    "type": "library",
-    "license": "GPL-2",
-    "authors": [
-        {
-            "name": "PublishPress",
-            "email": "help@publishpress.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "PublishPress\\EDD_License\\Core\\": "src/core/"
-        }
-    },
-    "require-dev": {
-        "lucatume/wp-browser": "^1.22"
-    },
-    "config": {
-        "preferred-install": "dist"
+  "name": "publishpress/wordpress-edd-license-integration",
+  "type": "library",
+  "license": "GPL-2",
+  "authors": [
+    {
+      "name": "PublishPress",
+      "email": "help@publishpress.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PublishPress\\EDD_License\\Core\\": "src/core/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/OSTraining/EDD-License-handler"
+    }
+  ],
+  "config": {
+    "preferred-install": "dist"
+  },
+  "require-dev": {
+    "lucatume/wp-browser": "^1.22"
+  },
+  "require": {
+    "pimple/pimple": "^3.2",
+    "publishpress/edd-license-handler": "^1.6"
+  }
 }
