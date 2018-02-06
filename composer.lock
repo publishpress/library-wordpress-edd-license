@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ea7a2cb818d3f0ed7f5fedbf03677bc",
+    "content-hash": "b43d48282cdf1fd3a4c6f5b2f2ab2f78",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -107,17 +107,11 @@
         },
         {
             "name": "publishpress/edd-license-handler",
-            "version": "1.6.14.1",
+            "version": "1.6.14.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/OSTraining/EDD-License-handler.git",
-                "reference": "bc609ba90404a2d42291b4ecd6e3d3ae7b4655d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/OSTraining/EDD-License-handler/zipball/bc609ba90404a2d42291b4ecd6e3d3ae7b4655d9",
-                "reference": "bc609ba90404a2d42291b4ecd6e3d3ae7b4655d9",
-                "shasum": ""
+                "url": "https://github.com/OSTraining/EDD-License-handler",
+                "reference": "1c5456e60941d7c0cf379f9b255f906ee6f6f8be"
             },
             "type": "library",
             "autoload": {
@@ -139,10 +133,7 @@
                     "email": "help@publishpress.com"
                 }
             ],
-            "support": {
-                "source": "https://github.com/OSTraining/EDD-License-handler/tree/1.6.14.1"
-            },
-            "time": "2018-02-02T03:47:59+00:00"
+            "time": "2018-02-06T22:54:27+00:00"
         }
     ],
     "packages-dev": [
@@ -1209,7 +1200,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.5.33",
+            "version": "v5.5.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1253,16 +1244,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.5.33",
+            "version": "v5.5.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "f6eb4fc687a1956cb44007604cd31dc50858eca9"
+                "reference": "139eb279bc18a1229c6c49a618d122c613edb2c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/f6eb4fc687a1956cb44007604cd31dc50858eca9",
-                "reference": "f6eb4fc687a1956cb44007604cd31dc50858eca9",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/139eb279bc18a1229c6c49a618d122c613edb2c7",
+                "reference": "139eb279bc18a1229c6c49a618d122c613edb2c7",
                 "shasum": ""
             },
             "require": {
@@ -1306,7 +1297,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-01-19T13:47:08+00:00"
+            "time": "2018-02-04T20:29:16+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

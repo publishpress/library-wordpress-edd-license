@@ -24,6 +24,6 @@
   },
   "require": {
     "pimple/pimple": "^3.2",
-    "publishpress/edd-license-handler": "^1.6"
+    "publishpress/edd-license-handler": "1.6.14.2"
   }
 }
