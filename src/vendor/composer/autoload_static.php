@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa
+class ComposerStaticInit5e94965c28a9f9c00d253197b2cf521b
 {
     public static $files = array (
         '46a06f2cec651588901bf1ff51ef5979' => __DIR__ . '/..' . '/publishpress/edd-license-handler/EDD_License_Handler.php',
@@ -43,9 +43,9 @@ class ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInited71a1cc23dcbda70c6d68c87241e1fa::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5e94965c28a9f9c00d253197b2cf521b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5e94965c28a9f9c00d253197b2cf521b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5e94965c28a9f9c00d253197b2cf521b::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -25,9 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) die('No direct script access allowed.');
 
 
 if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED' ) ) {
-	require_once __DIR__ . '/vendor/autoload.php';
-
-     if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION' ) ) {
+    if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION' ) ) {
         define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION', '2.0.1' );
     }
 

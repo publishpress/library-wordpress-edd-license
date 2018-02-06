@@ -19,6 +19,9 @@
             "url": "https://github.com/OSTraining/EDD-License-handler"
         }
     ],
+    "config": {
+        "preferred-install": "dist"
+    },
     "require": {
         "pimple/pimple": "^3.2",
         "publishpress/edd-license-handler": "^1.6"
