@@ -107,11 +107,11 @@
         },
         {
             "name": "publishpress/edd-license-handler",
-            "version": "1.6.14.2",
+            "version": "1.6.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OSTraining/EDD-License-handler",
-                "reference": "1c5456e60941d7c0cf379f9b255f906ee6f6f8be"
+                "reference": "0cf8447b2dd73d4a916b2bdcf1e364c89218b25d"
             },
             "type": "library",
             "autoload": {
@@ -133,7 +133,7 @@
                     "email": "help@publishpress.com"
                 }
             ],
-            "time": "2018-02-06T22:54:27+00:00"
+            "time": "2018-02-07T10:08:34+00:00"
         }
     ],
     "packages-dev": [
