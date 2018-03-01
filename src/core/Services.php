@@ -83,7 +83,7 @@ class Services implements \Pimple\ServiceProviderInterface
          */
         $pimple['LIBRARY_VERSION'] = function (Container $c)
         {
-            return '2.0.2';
+            return '2.2.0';
         };
 
         $pimple['API_URL'] = function (Container $c)
