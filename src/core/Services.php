@@ -26,7 +26,7 @@ namespace PublishPress\EDD_License\Core;
 use EDD_SL_Plugin_Updater;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+if (!defined('ABSPATH')) die('No direct script access allowed.');
 
 /**
  * The services for the dependency injection container.
@@ -81,6 +81,11 @@ class Services implements \Pimple\ServiceProviderInterface
          *
          * Define the constants.
          */
+        $pimple['LIBRARY_VERSION'] = function (Container $c)
+        {
+            return '2.0.2';
+        };
+
         $pimple['API_URL'] = function (Container $c)
         {
             return $c['config']->getApiUrl();

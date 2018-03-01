@@ -24,7 +24,7 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+if (!defined('ABSPATH')) die('No direct script access allowed.');
 
 /**
  * The config data for the services.

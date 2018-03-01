@@ -24,7 +24,7 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+if (!defined('ABSPATH')) die('No direct script access allowed.');
 
 /**
  * Class for license
@@ -162,7 +162,7 @@ class License {
 			'wp-edd-license-integration',
 			$this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
 			false,
-            PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION,
+            $this->container['LIBRARY_VERSION'],
 			'all'
 		);
 	}

@@ -24,7 +24,7 @@
 namespace PublishPress\EDD_License\Core\Setting\Field;
 
 // Exit if accessed directly
-if (!defined('PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED')) die('No direct script access allowed. EDD License Integration Library not loaded');
+if (!defined('ABSPATH')) die('No direct script access allowed.');
 
 
 class Text extends Base {

@@ -2,6 +2,7 @@
 /**
  * @package WordPress-EDD-License-Integration
  * @author PublishPress
+ * @deprecated 2.0.2
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -23,11 +24,4 @@
 
 if ( ! defined( 'ABSPATH' ) ) die('No direct script access allowed.');
 
-
-if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED' ) ) {
-    if ( ! defined( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION' ) ) {
-        define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_VERSION', '2.0.1' );
-    }
-
-	define( 'PUBLISHPRESS_EDD_LICENSE_INTEGRATION_LOADED', true );
-}
+// Deprecated file
