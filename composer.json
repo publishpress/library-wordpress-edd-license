@@ -1,5 +1,5 @@
 {
-  "name": "publishpress/wordpress-edd-license-integration",
+  "name": "alledia/wordpress-edd-license-integration",
   "type": "library",
   "license": "GPL-2",
   "authors": [
@@ -16,11 +16,11 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/OSTraining/EDD-License-handler"
+      "url": "https://github.com/AllediaWordPress/Alledia-EDD-License-handler"
     }
   ],
   "require": {
     "pimple/pimple": "~3.2",
-    "publishpress/edd-license-handler": "~1.6"
+    "alledia/edd-license-handler": "~1.6"
   }
 }
