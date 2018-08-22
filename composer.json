@@ -15,7 +15,9 @@
     },
     {
       "name": "Anderson Grudtner Martins",
-      "email": "anderson@grudtner.me"
+      "email": "anderson@grudtner.me",
+      "homepage": "http://anderson.grudtner.me",
+      "role": "Lead Developer"
     }
   ],
   "autoload": {
