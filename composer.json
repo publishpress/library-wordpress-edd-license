@@ -1,11 +1,21 @@
 {
   "name": "alledia/wordpress-edd-license-integration",
   "type": "library",
-  "license": "GPL-2",
+  "description": "EDD license integration library for WordPress plugins",
+  "keywords": ["edd", "license", "wordpress"],
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "PublishPress",
       "email": "help@publishpress.com"
+    },
+    {
+      "name": "Alledia",
+      "email": "help@alledia.com"
+    },
+    {
+      "name": "Anderson",
+      "email": "anderson@grudtner.me"
     }
   ],
   "autoload": {
@@ -13,14 +23,9 @@
       "PublishPress\\EDD_License\\Core\\": "src/core/"
     }
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/AllediaWordPress/Alledia-EDD-License-handler"
-    }
-  ],
   "require": {
+    "php": ">=5.4.0",
     "pimple/pimple": "~3.2",
-    "alledia/edd-license-handler": "~1.6"
+    "alledia/edd-license-handler": "dev-master"
   }
 }

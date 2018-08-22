@@ -4,15 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14b714320840c8705cc6db3a0fde9f8b",
+    "content-hash": "c7e3a14ebd1390b198f81695b3681b6a",
     "packages": [
         {
             "name": "alledia/edd-license-handler",
-            "version": "1.6.14.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/AllediaWordPress/Alledia-EDD-License-handler",
-                "reference": "5378b6c37dc4bdc315aec1ebbae47ec4c6f179d3"
+                "url": "https://github.com/AllediaWordPress/Alledia-EDD-License-Handler.git",
+                "reference": "35eeaf07ed5d193183fd0b899cba099868ba7b53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AllediaWordPress/Alledia-EDD-License-Handler/zipball/35eeaf07ed5d193183fd0b899cba099868ba7b53",
+                "reference": "35eeaf07ed5d193183fd0b899cba099868ba7b53",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
             },
             "type": "library",
             "autoload": {
@@ -21,8 +30,9 @@
                     "EDD_SL_Plugin_Updater.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -32,9 +42,19 @@
                 {
                     "name": "PublishPress",
                     "email": "help@publishpress.com"
+                },
+                {
+                    "name": "Alledia",
+                    "email": "help@alledia.com"
                 }
             ],
-            "time": "2018-08-17T20:21:11+00:00"
+            "description": "EDD License Handler for WordPress Plugins",
+            "keywords": [
+                "edd",
+                "license",
+                "wordpress"
+            ],
+            "time": "2018-08-22T16:02:50+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -139,9 +159,13 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "alledia/edd-license-handler": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4.0"
+    },
     "platform-dev": []
 }
