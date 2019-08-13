@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "697af606e99cb7172da6c9f87da59dac",
+    "content-hash": "a7f0776f4512ec110bc9dab4ce16be95",
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
-            "version": "dev-master",
+            "version": "1.6.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/EDD-SL-Plugin-Updater.git",
-                "reference": "771177795d3b285ebe96524c008acc8f21e3516f"
+                "reference": "a34a555c21aa26183f8da93f3340f0479eebe44b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/771177795d3b285ebe96524c008acc8f21e3516f",
-                "reference": "771177795d3b285ebe96524c008acc8f21e3516f",
+                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/a34a555c21aa26183f8da93f3340f0479eebe44b",
+                "reference": "a34a555c21aa26183f8da93f3340f0479eebe44b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.6.20"
             },
             "type": "library",
             "autoload": {
@@ -53,7 +53,7 @@
                 "updates",
                 "wordpress"
             ],
-            "time": "2019-04-04T19:37:43+00:00"
+            "time": "2019-08-13T13:47:35+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -158,13 +158,11 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "alledia/edd-sl-plugin-updater": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.6.20"
     },
     "platform-dev": []
 }
