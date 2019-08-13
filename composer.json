@@ -28,6 +28,6 @@
   "require": {
     "php": ">=5.4.0",
     "pimple/pimple": "~3.2",
-    "alledia/edd-license-handler": "dev-master"
+    "alledia/edd-sl-plugin-updater": "dev-master"
   }
 }

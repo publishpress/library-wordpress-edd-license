@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7e3a14ebd1390b198f81695b3681b6a",
+    "content-hash": "697af606e99cb7172da6c9f87da59dac",
     "packages": [
         {
-            "name": "alledia/edd-license-handler",
+            "name": "alledia/edd-sl-plugin-updater",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/AllediaWordPress/Alledia-EDD-License-Handler.git",
-                "reference": "35eeaf07ed5d193183fd0b899cba099868ba7b53"
+                "url": "https://github.com/publishpress/EDD-SL-Plugin-Updater.git",
+                "reference": "771177795d3b285ebe96524c008acc8f21e3516f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AllediaWordPress/Alledia-EDD-License-Handler/zipball/35eeaf07ed5d193183fd0b899cba099868ba7b53",
-                "reference": "35eeaf07ed5d193183fd0b899cba099868ba7b53",
+                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/771177795d3b285ebe96524c008acc8f21e3516f",
+                "reference": "771177795d3b285ebe96524c008acc8f21e3516f",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,6 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "EDD_License_Handler.php",
                     "EDD_SL_Plugin_Updater.php"
                 ]
             },
@@ -48,13 +47,13 @@
                     "email": "help@alledia.com"
                 }
             ],
-            "description": "EDD License Handler for WordPress Plugins",
+            "description": "EDD Updates Handler for WordPress Plugins",
             "keywords": [
                 "edd",
-                "license",
+                "updates",
                 "wordpress"
             ],
-            "time": "2018-08-22T16:02:50+00:00"
+            "time": "2019-04-04T19:37:43+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -160,7 +159,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "alledia/edd-license-handler": 20
+        "alledia/edd-sl-plugin-updater": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
