@@ -23,7 +23,7 @@
 
 namespace PublishPress\EDD_License\Core;
 
-use EDD_SL_Plugin_Updater;
+use Alledia\EDD_SL_Plugin_Updater;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) die('No direct script access allowed.');
@@ -83,7 +83,7 @@ class Services implements \Pimple\ServiceProviderInterface
          */
         $pimple['LIBRARY_VERSION'] = function (Container $c)
         {
-            return '2.2.5';
+            return '2.2.6';
         };
 
         $pimple['API_URL'] = function (Container $c)
