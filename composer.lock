@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
-            "version": "1.6.16.2",
+            "version": "1.6.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/EDD-SL-Plugin-Updater.git",
-                "reference": "dfe0b29a17e974cf5bd21039a7d060b000f584b8"
+                "reference": "0b99e31ea6d428d6e8cf30c6085d0def8cc341ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/dfe0b29a17e974cf5bd21039a7d060b000f584b8",
-                "reference": "dfe0b29a17e974cf5bd21039a7d060b000f584b8",
+                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/0b99e31ea6d428d6e8cf30c6085d0def8cc341ca",
+                "reference": "0b99e31ea6d428d6e8cf30c6085d0def8cc341ca",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "updates",
                 "wordpress"
             ],
-            "time": "2019-10-30T21:39:22+00:00"
+            "time": "2019-10-30T22:56:39+00:00"
         },
         {
             "name": "pimple/pimple",
