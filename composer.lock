@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f9c66c8c22d6f9e4d64288f3b1ec75e",
+    "content-hash": "980b0b34da4b5bd40e40f860dc71c88d",
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
-            "version": "dev-release/1.6.19",
+            "version": "1.6.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/EDD-SL-Plugin-Updater.git",
-                "reference": "a7686f29b502b21e30ca5bc8936c0331c00746d2"
+                "reference": "35458adae3c1cb4f8e173805d5ecedb9c33c7fb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/a7686f29b502b21e30ca5bc8936c0331c00746d2",
-                "reference": "a7686f29b502b21e30ca5bc8936c0331c00746d2",
+                "url": "https://api.github.com/repos/publishpress/EDD-SL-Plugin-Updater/zipball/35458adae3c1cb4f8e173805d5ecedb9c33c7fb1",
+                "reference": "35458adae3c1cb4f8e173805d5ecedb9c33c7fb1",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "updates",
                 "wordpress"
             ],
-            "time": "2020-04-09T16:42:01+00:00"
+            "time": "2020-04-13T15:50:18+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -159,9 +159,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "alledia/edd-sl-plugin-updater": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
