@@ -24,41 +24,45 @@
 namespace PublishPress\EDD_License\Core\Setting\Field;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 
-class Base {
-	/**
-	 * The value for this field
-	 *
-	 * @var string
-	 */
-	protected $value = '';
+class Base
+{
+    /**
+     * The value for this field
+     *
+     * @var string
+     */
+    protected $value = '';
 
-	/**
-	 * The constructor
-	 *
-	 * @param array $args {
-     *     @type  string  $options_group_name  The name for the field
-     *     @type  string  $name                The name for the field
-     *     @type  string  $id                  The name for the field
-     *     @type  string  $value               The value for the field
-     *     @type  string  $class               The CSS class for the field
-     *     @type  string  $placeholder         The CSS class for the field
+    /**
+     * The constructor
+     *
+     * @param array $args {
+     * @type  string $options_group_name The name for the field
+     * @type  string $name The name for the field
+     * @type  string $id The name for the field
+     * @type  string $value The value for the field
+     * @type  string $class The CSS class for the field
+     * @type  string $placeholder The CSS class for the field
      * }
-	 */
-	public function __construct( $args ) {
-        $defaults = array(
+     */
+    public function __construct($args)
+    {
+        $defaults = [
             'options_group_name' => 'myplugin',
             'name'               => 'myfield',
             'id'                 => null,
             'value'              => '',
             'class'              => '',
             'placeholder'        => '',
-        );
-        $args = wp_parse_args( $args, $defaults );
+        ];
+        $args     = wp_parse_args($args, $defaults);
 
-        if ( ! isset( $args['id' ] ) || is_null( $args['id'] ) || false === $args['id'] ) {
+        if (!isset($args['id']) || is_null($args['id']) || false === $args['id']) {
             $args['id'] = $args['name'];
         }
 

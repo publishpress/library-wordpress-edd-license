@@ -24,7 +24,9 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 
 /**
@@ -33,6 +35,7 @@ if (!defined('ABSPATH')) die('No direct script access allowed.');
  * @since      1.2.0
  * @package    WordPress-EDD-License-Integration
  */
-class Container extends \Pimple\Container {
+class Container extends \Pimple\Container
+{
 
 }

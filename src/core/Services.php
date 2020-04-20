@@ -24,9 +24,12 @@
 namespace PublishPress\EDD_License\Core;
 
 use Alledia\EDD_SL_Plugin_Updater;
+use Pimple\ServiceProviderInterface;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 /**
  * The services for the dependency injection container.
@@ -35,7 +38,7 @@ if (!defined('ABSPATH')) die('No direct script access allowed.');
  * @package    WordPress-EDD-License-Integration
  * @author     PublishPress
  */
-class Services implements \Pimple\ServiceProviderInterface
+class Services implements ServiceProviderInterface
 {
     /**
      * An instance of the ServicesConfig class.
@@ -48,9 +51,9 @@ class Services implements \Pimple\ServiceProviderInterface
     /**
      * The constructor.
      *
-     * @since      1.2.0
      * @param ServicesConfig $config
      * @throws Exception\InvalidParams
+     * @since      1.2.0
      */
     public function __construct(ServicesConfig $config)
     {
@@ -72,8 +75,7 @@ class Services implements \Pimple\ServiceProviderInterface
         /*
          * The config
          */
-        $pimple['config'] = function(Container $c)
-        {
+        $pimple['config'] = function (Container $c) {
             return $this->config;
         };
 
@@ -81,48 +83,39 @@ class Services implements \Pimple\ServiceProviderInterface
          *
          * Define the constants.
          */
-        $pimple['LIBRARY_VERSION'] = function (Container $c)
-        {
+        $pimple['LIBRARY_VERSION'] = function (Container $c) {
             return '2.3.1';
         };
 
-        $pimple['API_URL'] = function (Container $c)
-        {
+        $pimple['API_URL'] = function (Container $c) {
             return $c['config']->getApiUrl();
         };
 
-        $pimple['LICENSE_KEY'] = function (Container $c)
-        {
+        $pimple['LICENSE_KEY'] = function (Container $c) {
             return $c['config']->getLicenseKey();
         };
 
-        $pimple['LICENSE_STATUS'] = function (Container $c)
-        {
+        $pimple['LICENSE_STATUS'] = function (Container $c) {
             return $c['config']->getLicenseStatus();
         };
 
-        $pimple['PLUGIN_VERSION'] = function (Container $c)
-        {
+        $pimple['PLUGIN_VERSION'] = function (Container $c) {
             return $c['config']->getPluginVersion();
         };
 
-        $pimple['EDD_ITEM_ID'] = function (Container $c)
-        {
+        $pimple['EDD_ITEM_ID'] = function (Container $c) {
             return $c['config']->getEddItemId();
         };
 
-        $pimple['PLUGIN_AUTHOR'] = function (Container $c)
-        {
+        $pimple['PLUGIN_AUTHOR'] = function (Container $c) {
             return $c['config']->getPluginAuthor();
         };
 
-        $pimple['PLUGIN_FILE'] = function (Container $c)
-        {
+        $pimple['PLUGIN_FILE'] = function (Container $c) {
             return $c['config']->getPluginFile();
         };
 
-        $pimple['ASSETS_BASE_URL'] = function (Container $c)
-        {
+        $pimple['ASSETS_BASE_URL'] = function (Container $c) {
             $basePath = str_replace(ABSPATH, '', realpath(__DIR__ . '/../'));
 
             return get_site_url() . '/' . $basePath . '/assets';
@@ -131,8 +124,7 @@ class Services implements \Pimple\ServiceProviderInterface
         /*
          * Define the update manager.
          */
-        $pimple['update_manager'] = function (Container $c)
-        {
+        $pimple['update_manager'] = function (Container $c) {
             return new EDD_SL_Plugin_Updater(
                 $c['API_URL'],
                 $c['PLUGIN_FILE'],
@@ -149,16 +141,14 @@ class Services implements \Pimple\ServiceProviderInterface
         /*
          * Define the license manager.
          */
-        $pimple['license_manager'] = function (Container $c)
-        {
+        $pimple['license_manager'] = function (Container $c) {
             return new License($c);
         };
 
         /*
          * Define the language service.
          */
-        $pimple['language'] = function (Container $c)
-        {
+        $pimple['language'] = function (Container $c) {
             return new Language($c);
         };
     }
