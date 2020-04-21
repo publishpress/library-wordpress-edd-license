@@ -84,7 +84,7 @@ class Services implements ServiceProviderInterface
          * Define the constants.
          */
         $pimple['LIBRARY_VERSION'] = function (Container $c) {
-            return '2.3.1';
+            return '2.3.2';
         };
 
         $pimple['API_URL'] = function (Container $c) {
