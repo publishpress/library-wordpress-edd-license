@@ -46,6 +46,7 @@
     "codeception/module-db": "^1.0",
     "codeception/module-filesystem": "^1.0",
     "codeception/module-cli": "^1.0",
-    "codeception/util-universalframework": "^1.0"
+    "codeception/util-universalframework": "^1.0",
+    "codeception/domain-assert": "^1.0"
   }
 }

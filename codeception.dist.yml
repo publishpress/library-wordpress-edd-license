@@ -24,3 +24,5 @@ extensions:
                 src: "%WP_ROOT_FOLDER%/wp-content/plugins/dummy-plugin-edd-integration/vendor/alledia/wordpress-edd-license-integration"
 params:
     - .env.testing
+settings:
+    shuffle: true

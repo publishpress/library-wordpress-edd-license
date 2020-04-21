@@ -24,6 +24,9 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
+use PublishPress\EDD_License\Core\Exception\InvalidRequest;
+use WP_Error;
+
 if (!defined('ABSPATH')) {
     die('No direct script access allowed.');
 }
@@ -84,15 +87,91 @@ class License
     protected $container;
 
     /**
+     * @var string
+     */
+    protected $eddApiUrl;
+
+    /**
+     * @var array
+     */
+    protected $messages;
+
+    /**
      * The constructor
      *
      * @param Container $container
      */
     public function __construct(Container $container)
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts_styles'));
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts_styles']);
 
         $this->container = $container;
+
+        $this->eddApiUrl = $this->container['API_URL'];
+
+        $this->messages = [
+            'error-exception' => __(
+                'Sorry, an error occurred. Please check the error log and contact the PublishPress support team.',
+                'wp-edd-license-integration'
+            ),
+        ];
+    }
+
+    /**
+     * @param string $url
+     * @param array $body
+     *
+     * @return array|WP_Error
+     */
+    protected function makeRequest($url, $body)
+    {
+        return wp_remote_post(
+            $url,
+            [
+                'timeout'   => 30,
+                'sslverify' => false,
+                'body'      => $body
+            ]
+        );
+    }
+
+    /**
+     * @return string|void
+     */
+    protected function getHomeUrl()
+    {
+        return home_url();
+    }
+
+    /**
+     * @param mixed $response
+     * @return bool
+     */
+    protected function isWpError($response)
+    {
+        return is_wp_error($response);
+    }
+
+    /**
+     * @param mixed $response
+     * @return int|string
+     */
+    protected function getResponseCode($response)
+    {
+        return wp_remote_retrieve_response_code($response);
+    }
+
+    /**
+     * @param string $message
+     */
+    protected function logError($message)
+    {
+        error_log($message);
+    }
+
+    protected function getResponseDecodedJsonBody($response)
+    {
+        return json_decode(wp_remote_retrieve_body($response));
     }
 
     /**
@@ -105,30 +184,34 @@ class License
      */
     public function validate_license_key($license_key, $item_id)
     {
-        $response = wp_remote_post(
-            $this->container['API_URL'],
-            array(
-                'timeout'   => 30,
-                'sslverify' => false,
-                'body'      => array(
+        $result = false;
+
+        try {
+            $response = $this->makeRequest(
+                $this->eddApiUrl,
+                [
                     'edd_action' => "activate_license",
                     'license'    => $license_key,
                     'item_id'    => $item_id,
-                    'url'        => home_url()
-                )
-            )
-        );
+                    'url'        => $this->getHomeUrl(),
+                ]
+            );
 
-        if (is_wp_error($response) || 200 !== wp_remote_retrieve_response_code($response)) {
-            $errMessage = $response->get_error_message();
-
-            if (!is_wp_error($response) || empty($errMessage)) {
-                $errMessage = __('An error occurred. Please, try again.', 'wp-edd-license-integration');
+            if ($this->isWpError($response)) {
+                throw new InvalidRequest($response->get_error_message());
             }
 
-            return $errMessage;
-        } else {
-            $license_data = json_decode(wp_remote_retrieve_body($response));
+            $responseCode = $this->getResponseCode($response);
+            if (200 !== (int)$responseCode) {
+                throw new InvalidRequest(
+                    sprintf(
+                        'Request returned response code %d',
+                        $responseCode
+                    )
+                );
+            }
+
+            $license_data = $this->getResponseDecodedJsonBody($response);
 
             if (empty($license_data) || !is_object($license_data)) {
                 $license_new_status = static::STATUS_INVALID;
@@ -144,8 +227,25 @@ class License
                 }
             }
 
-            return $license_new_status;
+            $result = $license_new_status;
+        } catch (\Exception $e) {
+            $this->logError(
+                sprintf(
+                    '[PublishPress EDD_License] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
+                    $e->getCode(),
+                    $e->getMessage(),
+                    $e->getFile(),
+                    $e->getLine(),
+                    $this->container['API_URL'],
+                    $item_id,
+                    $this->getHomeUrl()
+                )
+            );
+
+            $result = $this->messages['error-exception'];
         }
+
+        return $result;
     }
 
     /**
