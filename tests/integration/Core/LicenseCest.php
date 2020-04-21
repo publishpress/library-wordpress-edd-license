@@ -1,5 +1,6 @@
 <?php namespace Core;
 
+use Codeception\Util\Stub;
 use PublishPress\EDD_License\Core\License;
 use WpunitTester;
 
@@ -47,6 +48,33 @@ class LicenseCest
         $licenseHandler = new License($container);
 
         $result = $licenseHandler->validate_license_key($validLicenseKey, $validItemId);
+
+        $I->assertIsString($result);
+        $I->assertStringContainsString('Sorry, an error occurred', $result);
+    }
+
+    public function testValidate_license_keyHandlingCodeDifferentThan200ForAValidKey(WpunitTester $I)
+    {
+        $validItemId         = $_ENV['PUBLISHPRESS_VALID_ITEM_ID'];
+        $validLicenseKey     = $_ENV['PUBLISHPRESS_VALID_LICENSE_KEY'];
+        $notResolvableApiUrl = 'http://invalid.site.com';
+
+        $container = $I->getEddContainer(self::DUMMY_PLUGIN_VERSION, $validItemId, '', '', $notResolvableApiUrl);
+
+        $licenseHandlerMock = Stub::construct(
+            '\\PublishPress\\EDD_License\\Core\\License',
+            [
+                $container,
+            ],
+            [
+                'makeRequest' => [
+                    'body'     => '',
+                    'response' => ['code' => 201],
+                ]
+            ]
+        );
+
+        $result = $licenseHandlerMock->validate_license_key($validLicenseKey, $validItemId);
 
         $I->assertIsString($result);
         $I->assertStringContainsString('Sorry, an error occurred', $result);
