@@ -26,7 +26,9 @@ namespace PublishPress\EDD_License\Core\Exception;
 use Exception;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 
 /**

@@ -24,7 +24,9 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 /**
  * The config data for the services.
@@ -87,34 +89,29 @@ class ServicesConfig
     /**
      * Returns true if the current attributes are valid.
      *
-     * @since 1.2.0
-     * @throws Exception\InvalidParams
      * @return bool
+     * @throws Exception\InvalidParams
+     * @since 1.2.0
      */
     public function validate()
     {
-        if (!isset($this->apiUrl) || empty($this->apiUrl))
-        {
+        if (!isset($this->apiUrl) || empty($this->apiUrl)) {
             throw new Exception\InvalidParams('Services require a non empty apiUrl attribute.');
         }
 
-        if (!isset($this->pluginVersion) || empty($this->pluginVersion))
-        {
+        if (!isset($this->pluginVersion) || empty($this->pluginVersion)) {
             throw new Exception\InvalidParams('Services require a non empty pluginVersion attribute.');
         }
 
-        if (!isset($this->eddItemId) || empty($this->eddItemId))
-        {
+        if (!isset($this->eddItemId) || empty($this->eddItemId)) {
             throw new Exception\InvalidParams('Services require a non empty eddItemId attribute.');
         }
 
-        if (!isset($this->pluginAuthor) || empty($this->pluginAuthor))
-        {
+        if (!isset($this->pluginAuthor) || empty($this->pluginAuthor)) {
             throw new Exception\InvalidParams('Services require a non empty pluginAuthor attribute.');
         }
 
-        if (!isset($this->pluginFile) || empty($this->pluginFile))
-        {
+        if (!isset($this->pluginFile) || empty($this->pluginFile)) {
             throw new Exception\InvalidParams('Services require a non empty pluginFile attribute.');
         }
 

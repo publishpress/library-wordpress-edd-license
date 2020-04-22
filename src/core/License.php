@@ -24,146 +24,252 @@
 namespace PublishPress\EDD_License\Core;
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) die('No direct script access allowed.');
+use PublishPress\EDD_License\Core\Exception\InvalidRequest;
+use WP_Error;
+
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
 
 /**
  * Class for license
  */
-class License {
-	/**
-	 * Constant for missing license status
-	 */
-	const STATUS_EMPTY_LICENSE = '';
+class License
+{
+    /**
+     * Constant for missing license status
+     */
+    const STATUS_EMPTY_LICENSE = '';
 
-	/**
-	 * Constant for valid status
-	 */
-	const STATUS_VALID = 'valid';
+    /**
+     * Constant for valid status
+     */
+    const STATUS_VALID = 'valid';
 
-	/**
-	 * Constant for expired status
-	 */
-	const STATUS_EXPIRED = 'expired';
+    /**
+     * Constant for expired status
+     */
+    const STATUS_EXPIRED = 'expired';
 
-	/**
-	 * Constant for revoked status
-	 */
-	const STATUS_REVOKED = 'revoked';
+    /**
+     * Constant for revoked status
+     */
+    const STATUS_REVOKED = 'revoked';
 
-	/**
-	 * Constant for missing status
-	 */
-	const STATUS_MISSING = 'missing';
+    /**
+     * Constant for missing status
+     */
+    const STATUS_MISSING = 'missing';
 
-	/**
-	 * Constant for invalid status
-	 */
-	const STATUS_INVALID = 'invalid';
+    /**
+     * Constant for invalid status
+     */
+    const STATUS_INVALID = 'invalid';
 
-	/**
-	 * Constant for inactive status
-	 */
-	const STATUS_SITE_INACTIVE = 'site_inactive';
+    /**
+     * Constant for inactive status
+     */
+    const STATUS_SITE_INACTIVE = 'site_inactive';
 
-	/**
-	 * Constant for mismatch status
-	 */
-	const STATUS_ITEM_NAME_MISMATCH = 'item_name_mismatch';
+    /**
+     * Constant for mismatch status
+     */
+    const STATUS_ITEM_NAME_MISMATCH = 'item_name_mismatch';
 
-	/**
-	 * Constant for no activations left status
-	 */
-	const STATUS_NO_ACTIVATIONS_LEFT = 'no_activations_left';
+    /**
+     * Constant for no activations left status
+     */
+    const STATUS_NO_ACTIVATIONS_LEFT = 'no_activations_left';
 
     /**
      * @var Container
      */
-	protected $container;
+    protected $container;
 
-	/**
-	 * The constructor
+    /**
+     * @var string
+     */
+    protected $eddApiUrl;
+
+    /**
+     * @var array
+     */
+    protected $messages;
+
+    /**
+     * The constructor
      *
      * @param Container $container
-	 */
-	public function __construct(Container $container)
+     */
+    public function __construct(Container $container)
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts_styles'));
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts_styles']);
 
         $this->container = $container;
+
+        $this->eddApiUrl = $this->container['API_URL'];
+
+        $this->messages = [
+            'error-exception' => __(
+                'Sorry, an error occurred. Please check the error log and contact the PublishPress support team.',
+                'wp-edd-license-integration'
+            ),
+        ];
     }
 
-	/**
-	 * Method that validates a license key.
-	 *
-	 * @param string $license_key
-	 * @param string $item_id
-	 *
-	 * @return  mixed
-	 */
-	public function validate_license_key( $license_key, $item_id ) {
-		$response = wp_remote_post(
-			$this->container['API_URL'],
-			array(
-				'timeout'   => 30,
-				'sslverify' => false,
-				'body'      => array(
-					'edd_action' => "activate_license",
-					'license'    => $license_key,
-					'item_id'    => $item_id,
-					'url'        => home_url()
-				)
-			)
-		);
+    /**
+     * @param string $url
+     * @param array $body
+     *
+     * @return array|WP_Error
+     */
+    protected function makeRequest($url, $body)
+    {
+        return wp_remote_post(
+            $url,
+            [
+                'timeout'   => 30,
+                'sslverify' => false,
+                'body'      => $body
+            ]
+        );
+    }
 
-		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-			$errMessage = $response->get_error_message();
+    /**
+     * @return string|void
+     */
+    protected function getHomeUrl()
+    {
+        return home_url();
+    }
 
-			if ( ! is_wp_error( $response ) || empty( $errMessage ) ) {
-				$errMessage = __( 'An error occurred. Please, try again.', 'wp-edd-license-integration' );
-			}
+    /**
+     * @param mixed $response
+     * @return bool
+     */
+    protected function isWpError($response)
+    {
+        return is_wp_error($response);
+    }
 
-			return $errMessage;
-		} else {
-			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+    /**
+     * @param mixed $response
+     * @return int|string
+     */
+    protected function getResponseCode($response)
+    {
+        return wp_remote_retrieve_response_code($response);
+    }
 
-			if ( empty( $license_data ) || ! is_object( $license_data ) ) {
-				$license_new_status = static::STATUS_INVALID;
-			} else {
-				if ( isset( $license_data->success ) && true === $license_data->success ) {
-					$license_new_status = static::STATUS_VALID;
-				} else {
-					if ( isset( $license_data->license ) && static::STATUS_INVALID === $license_data->license ) {
-						$license_new_status = static::STATUS_INVALID;
-					} else {
-						$license_new_status = isset( $license_data->error ) && ! empty( $license_data->error ) ? $license_data->error : static::STATUS_INVALID;
-					}
-				}
-			}
+    /**
+     * @param string $message
+     */
+    protected function logError($message)
+    {
+        error_log($message);
+    }
 
-			return $license_new_status;
-		}
-	}
+    protected function getResponseDecodedJsonBody($response)
+    {
+        return json_decode(wp_remote_retrieve_body($response));
+    }
 
-	/**
-	 * Sanitize the license key, returning the clean key.
-	 *
-	 * @param  string $license_key
-	 * @return string
-	 */
-	public function sanitize_license_key( $license_key ) {
-		return preg_replace('/[^a-z0-9\-_]/i', '', $license_key );
-	}
+    /**
+     * Method that validates a license key.
+     *
+     * @param string $license_key
+     * @param string $item_id
+     *
+     * @return  mixed
+     */
+    public function validate_license_key($license_key, $item_id)
+    {
+        $result = false;
 
-	/**
-	 * Enqueue JS scripts and CSS stylesheets
-	 */
-	public function enqueue_scripts_styles() {
-		wp_enqueue_style(
-			'wp-edd-license-integration',
-			$this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
-			false,
+        try {
+            $response = $this->makeRequest(
+                $this->eddApiUrl,
+                [
+                    'edd_action' => "activate_license",
+                    'license'    => $license_key,
+                    'item_id'    => $item_id,
+                    'url'        => $this->getHomeUrl(),
+                ]
+            );
+
+            if ($this->isWpError($response)) {
+                throw new InvalidRequest($response->get_error_message());
+            }
+
+            $responseCode = $this->getResponseCode($response);
+            if (200 !== (int)$responseCode) {
+                throw new InvalidRequest(
+                    sprintf(
+                        'Request returned response code %d',
+                        $responseCode
+                    )
+                );
+            }
+
+            $license_data = $this->getResponseDecodedJsonBody($response);
+
+            if (empty($license_data) || !is_object($license_data)) {
+                $license_new_status = static::STATUS_INVALID;
+            } else {
+                if (isset($license_data->success) && true === $license_data->success) {
+                    $license_new_status = static::STATUS_VALID;
+                } else {
+                    if (isset($license_data->license) && static::STATUS_INVALID === $license_data->license) {
+                        $license_new_status = static::STATUS_INVALID;
+                    } else {
+                        $license_new_status = isset($license_data->error) && !empty($license_data->error) ? $license_data->error : static::STATUS_INVALID;
+                    }
+                }
+            }
+
+            $result = $license_new_status;
+        } catch (\Exception $e) {
+            $this->logError(
+                sprintf(
+                    '[PublishPress EDD_License] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
+                    $e->getCode(),
+                    $e->getMessage(),
+                    $e->getFile(),
+                    $e->getLine(),
+                    $this->container['API_URL'],
+                    $item_id,
+                    $this->getHomeUrl()
+                )
+            );
+
+            $result = $this->messages['error-exception'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Sanitize the license key, returning the clean key.
+     *
+     * @param string $license_key
+     * @return string
+     */
+    public function sanitize_license_key($license_key)
+    {
+        return preg_replace('/[^a-z0-9\-_]/i', '', $license_key);
+    }
+
+    /**
+     * Enqueue JS scripts and CSS stylesheets
+     */
+    public function enqueue_scripts_styles()
+    {
+        wp_enqueue_style(
+            'wp-edd-license-integration',
+            $this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
+            false,
             $this->container['LIBRARY_VERSION'],
-			'all'
-		);
-	}
+            'all'
+        );
+    }
 }
