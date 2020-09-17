@@ -227,6 +227,22 @@ class License
                 }
             }
 
+            if ($license_new_status !== static::STATUS_VALID) {
+                $error_message = 'No message';
+
+                if (isset($license_data->error)) {
+                    $error_message = $license_data->error;
+                }
+
+                $this->logError(
+                    sprintf(
+                        '[PublishPress EDD_License] License is set as %s. Error message: %s',
+                        $license_new_status,
+                        $error_message
+                    )
+                );
+            }
+
             $result = $license_new_status;
         } catch (\Exception $e) {
             $this->logError(
