@@ -34,15 +34,36 @@ if (!defined('ABSPATH')) {
 class License_key extends Base
 {
     /**
-     * The value for this field
-     *
+     * @var string
+     */
+    protected $options_group_name;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var string
+     */
+    protected $id;
+
+    /**
+     * @var string
+     */
+    protected $class;
+
+    /**
+     * @var string
+     */
+    protected $value;
+
+    /**
      * @var string
      */
     protected $license_status = '';
 
     /**
-     * The link for the more info link
-     *
      * @var string
      */
     protected $link_more_info = '';
@@ -57,6 +78,7 @@ class License_key extends Base
      * @type  string $value The value for the field
      * @type  string $class The CSS class for the field
      * @type  string $license_status The value for the field
+     * @type  string $link_more_info The link for more info
      * }
      */
     public function __construct($args)
@@ -64,13 +86,24 @@ class License_key extends Base
         parent::__construct($args);
 
         $defaults = [
+            'options_group_name' => '',
+            'name' => '',
+            'id' => '',
+            'value' => '',
+            'class' => '',
             'license_status' => License::STATUS_EMPTY_LICENSE,
             'link_more_info' => '',
         ];
-        $args     = wp_parse_args($args, $defaults);
 
-        $this->license_status = $args['license_status'];
-        $this->link_more_info = $args['link_more_info'];
+        $args = wp_parse_args($args, $defaults);
+
+        $this->options_group_name = $args['options_group_name'];
+        $this->name               = $args['name'];
+        $this->id                 = $args['id'];
+        $this->value              = $args['value'];
+        $this->class              = $args['class'];
+        $this->license_status     = $args['license_status'];
+        $this->link_more_info     = $args['link_more_info'];
     }
 
     /**
@@ -119,7 +152,7 @@ class License_key extends Base
                 $license_status_message    = __("Activated", 'wp-edd-license-integration');
                 break;
             default:
-                $license_status_message = __("Not validated yet", 'wp-edd-license-integration');
+                $license_status_message = $this->license_status;
                 break;
         }
 
@@ -127,7 +160,7 @@ class License_key extends Base
             '{{ name }}'                      => $this->name,
             '{{ id }}'                        => $this->id,
             '{{ value }}'                     => $this->value,
-            '{{ placeholder }}'               => $this->placeholder,
+            '{{ class }}'                     => $this->class,
             '{{ status_icon_class }}'         => $license_status_icon_class,
             '{{ status_class }}'              => $license_status_class,
             '{{ options_group_name }}'        => $this->options_group_name,
@@ -155,10 +188,12 @@ class License_key extends Base
      */
     protected function get_template()
     {
-        $html = '<div class="wp-eddli-container">';
-        $html .= '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" class="regular-text" />';
+        $html = '<div class="wp-eddli-container {{ class }}">';
+        $html .= '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" class="regular-text" />';
+        $html .= '<div class="wp-eddli-container-field-description">' . esc_html__('Enter the license key for being able to update the plugin.',
+                                                                                    'publishpress-pro') . '</div>';
         $html .= '<br/><br/>';
-        $html .= '<strong>{{ lang_status }}: <span class="dashicons {{ status_icon_class }}"></span> <span class="{{ status_class }}">{{ lang_status_message }}</span>.</strong>';
+        $html .= '<strong>{{ lang_status }}: <span class="dashicons {{ status_icon_class }}"></span> <span class="{{ status_class }}">{{ lang_status_message }}</span></strong>';
         $html .= '<br/><br/>';
 
         if (!License::STATUS_VALID === $this->license_status) {
