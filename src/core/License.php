@@ -264,6 +264,72 @@ class License
         return $result;
     }
 
+    public function deactivate_license_key($license_key, $item_id)
+    {
+        try {
+            $response = $this->makeRequest(
+                $this->eddApiUrl,
+                [
+                    'edd_action' => "deactivate_license",
+                    'license'    => $license_key,
+                    'item_id'    => $item_id,
+                    'url'        => $this->getHomeUrl(),
+                ]
+            );
+
+            if ($this->isWpError($response)) {
+                throw new InvalidRequest($response->get_error_message());
+            }
+
+            $responseCode = $this->getResponseCode($response);
+            if (200 !== (int)$responseCode) {
+                throw new InvalidRequest(
+                    sprintf(
+                        'Request returned response code %d',
+                        $responseCode
+                    )
+                );
+            }
+
+            $license_data = $this->getResponseDecodedJsonBody($response);
+
+            if (empty($license_data) || !is_object($license_data)) {
+                $license_new_status = static::STATUS_INVALID;
+
+                $this->logError('[PublishPress EDD_License] Invalid response from licence server');
+            } else {
+                if (isset($license_data->success) && true === $license_data->success) {
+                    $license_new_status = static::STATUS_VALID;
+                } else {
+                    if (isset($license_data->license) && static::STATUS_INVALID === $license_data->license) {
+                        $license_new_status = static::STATUS_INVALID;
+                    } else {
+                        $license_new_status = isset($license_data->error) && !empty($license_data->error) ? $license_data->error : static::STATUS_INVALID;
+                    }
+                }
+            }
+
+            $result = $license_new_status;
+        } catch (\Exception $e) {
+            $this->logError(
+                sprintf(
+                    '[PublishPress EDD_License] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
+                    $e->getCode(),
+                    $e->getMessage(),
+                    $e->getFile(),
+                    $e->getLine(),
+                    $this->container['API_URL'],
+                    $item_id,
+                    $this->getHomeUrl()
+                )
+            );
+
+            $result = $this->messages['error-exception'];
+        }
+
+        return $result;
+    }
+
     /**
      * Sanitize the license key, returning the clean key.
      *
