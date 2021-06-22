@@ -67,6 +67,11 @@ class License
     const STATUS_INVALID = 'invalid';
 
     /**
+     * Constant for failed status
+     */
+    const STATUS_FAILED = 'failed';
+
+    /**
      * Constant for inactive status
      */
     const STATUS_SITE_INACTIVE = 'site_inactive';
@@ -301,7 +306,7 @@ class License
                 if (isset($license_data->success) && true === $license_data->success) {
                     $license_new_status = static::STATUS_VALID;
                 } else {
-                    if (isset($license_data->license) && static::STATUS_INVALID === $license_data->license) {
+                    if (isset($license_data->license) && static::STATUS_FAILED === $license_data->license) {
                         $license_new_status = static::STATUS_INVALID;
                     } else {
                         $license_new_status = isset($license_data->error) && !empty($license_data->error) ? $license_data->error : static::STATUS_INVALID;
