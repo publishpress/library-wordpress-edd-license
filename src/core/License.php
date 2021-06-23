@@ -134,7 +134,7 @@ class License
             $url,
             [
                 'timeout'   => 30,
-                'sslverify' => false,
+                'sslverify' => true,
                 'body'      => $body
             ]
         );
