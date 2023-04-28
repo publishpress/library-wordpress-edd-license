@@ -115,12 +115,6 @@ class Services implements ServiceProviderInterface
             return $c['config']->getPluginFile();
         };
 
-        $pimple['ASSETS_BASE_URL'] = function (Container $c) {
-            $basePath = str_replace(ABSPATH, '', realpath(__DIR__ . '/../'));
-
-            return get_site_url() . '/' . $basePath . '/assets';
-        };
-
         /*
          * Define the update manager.
          */

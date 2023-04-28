@@ -108,7 +108,7 @@ class License
      */
     public function __construct(Container $container)
     {
-        add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts_styles']);
+        add_action('admin_head', [$this, 'adminHeadAddStyle']);
 
         $this->container = $container;
 
@@ -346,18 +346,20 @@ class License
         return preg_replace('/[^a-z0-9\-_]/i', '', $license_key);
     }
 
-    /**
-     * Enqueue JS scripts and CSS stylesheets
-     */
-    public function enqueue_scripts_styles()
+    public function adminHeadAddStyle()
     {
-        // TODO: Use inline style
-        wp_enqueue_style(
-            'wp-edd-license-integration',
-            $this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
-            false,
-            $this->container['LIBRARY_VERSION'],
-            'all'
-        );
+        ?>
+        <style>
+            .pp-wp-edd-license-container .dashicons-warning,
+            .pp-wp-edd-license-container .pp-wp-edd-license-label-danger {
+                color: red;
+            }
+
+            .pp-wp-edd-license-container .dashicons-yes,
+            .pp-wp-edd-license-container .pp-wp-edd-license-label-success {
+                color: green;
+            }
+        </style>
+        <?php
     }
 }
