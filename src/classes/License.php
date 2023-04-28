@@ -21,10 +21,10 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\WordPressEDDLicense\Core;
+namespace PublishPress\WordPressEDDLicense;
 
 // Exit if accessed directly
-use PublishPress\WordPressEDDLicense\Core\Exception\InvalidRequest;
+use PublishPress\WordPressEDDLicense\Exception\InvalidRequest;
 use WP_Error;
 
 if (!defined('ABSPATH')) {

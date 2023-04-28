@@ -1,7 +1,7 @@
 <?php namespace Core;
 
 use Codeception\Util\Stub;
-use PublishPress\WordPressEDDLicense\Core\License;
+use PublishPress\WordPressEDDLicense\License;
 use WpunitTester;
 
 class LicenseCest

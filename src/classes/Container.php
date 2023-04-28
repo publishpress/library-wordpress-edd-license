@@ -21,9 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\WordPressEDDLicense\Core\Exception;
-
-use Exception;
+namespace PublishPress\WordPressEDDLicense;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -32,13 +30,12 @@ if (!defined('ABSPATH')) {
 
 
 /**
- * InvalidParams exception.
+ * The container for dependency injection.
  *
- * @since      1.0.0
+ * @since      1.2.0
  * @package    WordPress-EDD-License-Integration
- * @author     PublishPress
  */
-class InvalidParams extends Exception
+class Container extends \PublishPress\Pimple\Container
 {
 
 }

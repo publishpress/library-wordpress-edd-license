@@ -4,9 +4,9 @@ namespace Helper;
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
-use PublishPress\WordPressEDDLicense\Core\Container as EDDContainer;
-use PublishPress\WordPressEDDLicense\Core\Services as EDDServices;
-use PublishPress\WordPressEDDLicense\Core\ServicesConfig as EDDServicesConfig;
+use PublishPress\WordPressEDDLicense\Container as EDDContainer;
+use PublishPress\WordPressEDDLicense\Services as EDDServices;
+use PublishPress\WordPressEDDLicense\ServicesConfig as EDDServicesConfig;
 
 class Wpunit extends \Codeception\Module
 {
@@ -19,7 +19,7 @@ class Wpunit extends \Codeception\Module
      * @param string $apiUrl
      * @return EDDContainer
      *
-     * @throws \PublishPress\WordPressEDDLicense\Core\Exception\InvalidParams
+     * @throws \PublishPress\WordPressEDDLicense\Exception\InvalidParams
      */
     public function getEddContainer($pluginVersion = '0.1.0', $itemID = 0, $licenseKey = '', $licenseStatus = '', $apiUrl = '')
     {

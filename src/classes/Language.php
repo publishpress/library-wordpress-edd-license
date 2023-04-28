@@ -1,7 +1,7 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author PublishPress
+ * @author  PublishPress
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -21,21 +21,37 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\WordPressEDDLicense\Core;
+namespace PublishPress\WordPressEDDLicense;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     die('No direct script access allowed.');
 }
 
-
 /**
- * The container for dependency injection.
- *
- * @since      1.2.0
- * @package    WordPress-EDD-License-Integration
+ * Class for language
  */
-class Container extends \PublishPress\Pimple\Container
+class Language
 {
+    /**
+     * Language constructor.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
+    /**
+     * Loads the textdomain for the library
+     */
+    public function load_textdomain()
+    {
+        load_plugin_textdomain(
+            'wp-edd-license-integration',
+            false,
+            basename(__DIR__) . '/languages/'
+        );
+    }
 }
