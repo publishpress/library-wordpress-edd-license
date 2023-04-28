@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core;
+namespace PublishPress\WordPressEDDLicense;
 
 use Alledia\EDD_SL_Plugin_Updater;
 use PublishPress\Pimple\ServiceProviderInterface;
@@ -113,12 +113,6 @@ class Services implements ServiceProviderInterface
 
         $pimple['PLUGIN_FILE'] = function (Container $c) {
             return $c['config']->getPluginFile();
-        };
-
-        $pimple['ASSETS_BASE_URL'] = function (Container $c) {
-            $basePath = str_replace(ABSPATH, '', realpath(__DIR__ . '/../'));
-
-            return get_site_url() . '/' . $basePath . '/assets';
         };
 
         /*

@@ -2,7 +2,6 @@
 /**
  * @package WordPress-EDD-License-Integration
  * @author PublishPress
- * @deprecated 2.0.2
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -22,4 +21,24 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Deprecated file
+namespace PublishPress\WordPressEDDLicense\Exception;
+
+use Exception;
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    die('No direct script access allowed.');
+}
+
+
+/**
+ * InvalidParams exception.
+ *
+ * @since      1.0.0
+ * @package    WordPress-EDD-License-Integration
+ * @author     PublishPress
+ */
+class InvalidParams extends Exception
+{
+
+}

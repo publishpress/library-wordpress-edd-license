@@ -1,7 +1,7 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author  PublishPress
+ * @author PublishPress
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -20,38 +20,24 @@
  * You should have received a copy of the GNU General Public License
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace PublishPress\WordPressEDDLicense\Exception;
 
-namespace PublishPress\EDD_License\Core;
+use Exception;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     die('No direct script access allowed.');
 }
 
-/**
- * Class for language
- */
-class Language
-{
-    /**
-     * Language constructor.
-     *
-     * @param Container $container
-     */
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
-    }
 
-    /**
-     * Loads the textdomain for the library
-     */
-    public function load_textdomain()
-    {
-        load_plugin_textdomain(
-            'wp-edd-license-integration',
-            false,
-            basename(__DIR__) . '/languages/'
-        );
-    }
+/**
+ * Generic exception.
+ *
+ * @since      1.0.0
+ * @package    WordPress-EDD-License-Integration
+ * @author     PublishPress
+ */
+class Generic extends Exception
+{
+
 }

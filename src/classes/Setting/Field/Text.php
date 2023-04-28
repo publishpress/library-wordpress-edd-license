@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core;
+namespace PublishPress\WordPressEDDLicense\Setting\Field;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -29,13 +29,34 @@ if (!defined('ABSPATH')) {
 }
 
 
-/**
- * The container for dependency injection.
- *
- * @since      1.2.0
- * @package    WordPress-EDD-License-Integration
- */
-class Container extends \PublishPress\Pimple\Container
+class Text extends Base
 {
+    /**
+     * Returns a string version of this class, with the HTML code for the
+     * field.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return vsprintf(
+            $this->get_template(),
+            [
+                sprintf('[%s][%s]', $this->options_group_name, $this->name),
+                sprintf('%s-%s', $this->options_group_name, $this->id),
+                $this->value,
+                $this->placeholder,
+            ]
+        );
+    }
 
+    /**
+     * Returns the field HTML template.
+     *
+     * @return string
+     */
+    protected function get_template()
+    {
+        return '<input type="text" name="%s" id="%s" value="%s" placeholder="%s" />';
+    }
 }

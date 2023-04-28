@@ -1,0 +1,4 @@
+actor: WpunitTester
+modules:
+    enabled:
+        - \Helper\Wpunit

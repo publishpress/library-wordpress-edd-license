@@ -1,7 +1,7 @@
 <?php
 /**
  * @package WordPress-EDD-License-Integration
- * @author PublishPress
+ * @author  PublishPress
  *
  * Copyright (c) 2018 PublishPress
  *
@@ -21,42 +21,37 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core\Setting\Field;
+namespace PublishPress\WordPressEDDLicense;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     die('No direct script access allowed.');
 }
 
-
-class Text extends Base
+/**
+ * Class for language
+ */
+class Language
 {
     /**
-     * Returns a string version of this class, with the HTML code for the
-     * field.
+     * Language constructor.
      *
-     * @return string
+     * @param Container $container
      */
-    public function __toString()
+    public function __construct(Container $container)
     {
-        return vsprintf(
-            $this->get_template(),
-            [
-                sprintf('[%s][%s]', $this->options_group_name, $this->name),
-                sprintf('%s-%s', $this->options_group_name, $this->id),
-                $this->value,
-                $this->placeholder,
-            ]
-        );
+        $this->container = $container;
     }
 
     /**
-     * Returns the field HTML template.
-     *
-     * @return string
+     * Loads the textdomain for the library
      */
-    protected function get_template()
+    public function load_textdomain()
     {
-        return '<input type="text" name="%s" id="%s" value="%s" placeholder="%s" />';
+        load_plugin_textdomain(
+            'wp-edd-license-integration',
+            false,
+            basename(__DIR__) . '/languages/'
+        );
     }
 }

@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core\Exception;
+namespace PublishPress\WordPressEDDLicense\Exception;
 
 use Exception;
 
@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
  * @package    WordPress-EDD-License-Integration
  * @author     PublishPress
  */
-class InvalidParams extends Exception
+class InvalidRequest extends Exception
 {
 
 }

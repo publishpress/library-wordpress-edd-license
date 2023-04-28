@@ -21,9 +21,9 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core\Setting\Field;
+namespace PublishPress\WordPressEDDLicense\Setting\Field;
 
-use PublishPress\EDD_License\Core\License;
+use PublishPress\WordPressEDDLicense\License;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -114,7 +114,7 @@ class License_key extends Base
      */
     public function __toString()
     {
-        $license_status_class      = "wp-eddli-label-danger";
+        $license_status_class      = "pp-wp-edd-license-label-danger";
         $license_status_icon_class = "dashicons-warning";
 
         switch ($this->license_status) {
@@ -147,7 +147,7 @@ class License_key extends Base
                 );
                 break;
             case License::STATUS_VALID:
-                $license_status_class      = "wp-eddli-label-success";
+                $license_status_class      = "pp-wp-edd-license-label-success";
                 $license_status_icon_class = "dashicons-yes";
                 $license_status_message    = __("Activated", 'wp-edd-license-integration');
                 break;
@@ -188,9 +188,9 @@ class License_key extends Base
      */
     protected function get_template()
     {
-        $html = '<div class="wp-eddli-container {{ class }}">';
+        $html = '<div class="pp-wp-edd-license-container {{ class }}">';
         $html .= '<input type="text" name="{{ options_group_name }}[{{ name }}]" id="{{ options_group_name }}-{{ id }}" value="{{ value }}" class="regular-text" />';
-        $html .= '<div class="wp-eddli-container-field-description">' . esc_html__('Enter the license key for being able to update the plugin.',
+        $html .= '<div class="pp-wp-edd-license-container-field-description">' . esc_html__('Enter the license key for being able to update the plugin.',
                                                                                     'publishpress-pro') . '</div>';
         $html .= '<br/><br/>';
         $html .= '<strong>{{ lang_status }}: <span class="dashicons {{ status_icon_class }}"></span> <span class="{{ status_class }}">{{ lang_status_message }}</span></strong>';

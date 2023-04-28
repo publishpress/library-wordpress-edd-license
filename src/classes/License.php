@@ -21,10 +21,10 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core;
+namespace PublishPress\WordPressEDDLicense;
 
 // Exit if accessed directly
-use PublishPress\EDD_License\Core\Exception\InvalidRequest;
+use PublishPress\WordPressEDDLicense\Exception\InvalidRequest;
 use WP_Error;
 
 if (!defined('ABSPATH')) {
@@ -108,7 +108,7 @@ class License
      */
     public function __construct(Container $container)
     {
-        add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts_styles']);
+        add_action('admin_head', [$this, 'adminHeadAddStyle']);
 
         $this->container = $container;
 
@@ -241,7 +241,7 @@ class License
 
                 $this->logError(
                     sprintf(
-                        '[PublishPress EDD_License] License is set as %s. Error message: %s',
+                        '[PublishPress WordPressEDDLicense] License is set as %s. Error message: %s',
                         $license_new_status,
                         $error_message
                     )
@@ -252,7 +252,7 @@ class License
         } catch (\Exception $e) {
             $this->logError(
                 sprintf(
-                    '[PublishPress EDD_License] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
+                    '[PublishPress WordPressEDDLicense] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
                     $e->getCode(),
                     $e->getMessage(),
                     $e->getFile(),
@@ -301,7 +301,7 @@ class License
             if (empty($license_data) || !is_object($license_data)) {
                 $license_new_status = static::STATUS_INVALID;
 
-                $this->logError('[PublishPress EDD_License] Invalid response from licence server');
+                $this->logError('[PublishPress WordPressEDDLicense] Invalid response from licence server');
             } else {
                 if (isset($license_data->success) && true === $license_data->success) {
                     $license_new_status = static::STATUS_VALID;
@@ -318,7 +318,7 @@ class License
         } catch (\Exception $e) {
             $this->logError(
                 sprintf(
-                    '[PublishPress EDD_License] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
+                    '[PublishPress WordPressEDDLicense] (%d) %s at %s:%d [API_URL="%s", $item_id="%s", url="%s"]',
                     $e->getCode(),
                     $e->getMessage(),
                     $e->getFile(),
@@ -346,17 +346,20 @@ class License
         return preg_replace('/[^a-z0-9\-_]/i', '', $license_key);
     }
 
-    /**
-     * Enqueue JS scripts and CSS stylesheets
-     */
-    public function enqueue_scripts_styles()
+    public function adminHeadAddStyle()
     {
-        wp_enqueue_style(
-            'wp-edd-license-integration',
-            $this->container['ASSETS_BASE_URL'] . '/css/edd-license-style.css',
-            false,
-            $this->container['LIBRARY_VERSION'],
-            'all'
-        );
+        ?>
+        <style>
+            .pp-wp-edd-license-container .dashicons-warning,
+            .pp-wp-edd-license-container .pp-wp-edd-license-label-danger {
+                color: red;
+            }
+
+            .pp-wp-edd-license-container .dashicons-yes,
+            .pp-wp-edd-license-container .pp-wp-edd-license-label-success {
+                color: green;
+            }
+        </style>
+        <?php
     }
 }
