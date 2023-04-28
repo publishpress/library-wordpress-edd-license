@@ -1,5 +1,5 @@
 {
-  "name": "alledia/wordpress-edd-license-integration",
+  "name": "publishpress/wordpress-edd-license",
   "type": "library",
   "description": "EDD license integration library for WordPress plugins",
   "keywords": [
