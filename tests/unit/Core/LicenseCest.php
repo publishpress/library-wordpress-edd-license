@@ -10,7 +10,7 @@ class LicenseCest
         $expectedMessage = 'Sorry, an error occurred';
 
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'eddApiUrl'   => 'http://invalid.url',
@@ -34,7 +34,7 @@ class LicenseCest
         $expectedMessage = 'Sorry, an error occurred';
 
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'eddApiUrl'       => 'http://invalid.url',
@@ -54,7 +54,7 @@ class LicenseCest
     public function testValidate_license_keyReturnsStringInvalidIfResposnseBodyIsEmpty(UnitTester $I)
     {
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'makeRequest'                => true,
@@ -73,7 +73,7 @@ class LicenseCest
     public function testValidate_license_keyReturnsStringValidIfResponseReturnsSuccess(UnitTester $I)
     {
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'makeRequest'                => true,
@@ -92,7 +92,7 @@ class LicenseCest
     public function testValidate_license_keyReturnsStringInvalidIfResponseReturnsAsInvalidLicense(UnitTester $I)
     {
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'makeRequest'                => true,
@@ -113,7 +113,7 @@ class LicenseCest
         $expectedErrorMessage = 'Any error message';
 
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'makeRequest'                => true,
@@ -132,7 +132,7 @@ class LicenseCest
     public function testValidate_license_keyReturnsStringInvalidIfResponseReturnsAnErrorFlagButWithoutMessage(UnitTester $I)
     {
         $licenseHandlerMock = Stub::makeEmptyExcept(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             'validate_license_key',
             [
                 'makeRequest'                => true,

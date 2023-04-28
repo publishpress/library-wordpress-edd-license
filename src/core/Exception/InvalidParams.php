@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core\Exception;
+namespace PublishPress\WordPressEDDLicense\Core\Exception;
 
 use Exception;
 

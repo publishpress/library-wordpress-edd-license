@@ -1,7 +1,7 @@
 <?php namespace Core;
 
 use Codeception\Util\Stub;
-use PublishPress\EDD_License\Core\License;
+use PublishPress\WordPressEDDLicense\Core\License;
 use WpunitTester;
 
 class LicenseCest
@@ -62,7 +62,7 @@ class LicenseCest
         $container = $I->getEddContainer(self::DUMMY_PLUGIN_VERSION, $validItemId, '', '', $notResolvableApiUrl);
 
         $licenseHandlerMock = Stub::construct(
-            '\\PublishPress\\EDD_License\\Core\\License',
+            '\\PublishPress\\WordPressEDDLicense\\Core\\License',
             [
                 $container,
             ],

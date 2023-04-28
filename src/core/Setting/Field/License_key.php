@@ -21,9 +21,9 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core\Setting\Field;
+namespace PublishPress\WordPressEDDLicense\Core\Setting\Field;
 
-use PublishPress\EDD_License\Core\License;
+use PublishPress\WordPressEDDLicense\Core\License;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {

@@ -21,7 +21,7 @@
  * along with WordPress-EDD-License-Integration.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace PublishPress\EDD_License\Core;
+namespace PublishPress\WordPressEDDLicense\Core;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
