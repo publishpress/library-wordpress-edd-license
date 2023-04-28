@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1dcc8153f2b3d96ff19ef586b68acdc",
+    "content-hash": "fd64e9b55af9cf1806de76377aac8557",
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
@@ -4277,6 +4277,51 @@
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
             "time": "2021-10-29T13:26:27+00:00"
+        },
+        {
+            "name": "publishpress/version-loader-generator",
+            "version": "1.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/publishpress/library-version-loader-generator.git",
+                "reference": "263b33fd442dc35fb7420d5d9b87cb3a9a58a555"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/publishpress/library-version-loader-generator/zipball/263b33fd442dc35fb7420d5d9b87cb3a9a58a555",
+                "reference": "263b33fd442dc35fb7420d5d9b87cb3a9a58a555",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/util-universalframework": "^1.0",
+                "lucatume/wp-browser": "^3.1",
+                "php": ">=7.2.5"
+            },
+            "bin": [
+                "bin/version-loader-generator"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Anderson Martins",
+                    "email": "anderson@publishpress.com"
+                }
+            ],
+            "description": "Composer script to generate the version loader files for libraries on PubilshPress",
+            "support": {
+                "issues": "https://github.com/publishpress/library-version-loader-generator/issues",
+                "source": "https://github.com/publishpress/library-version-loader-generator/tree/1.1.8"
+            },
+            "time": "2023-04-25T21:05:45+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

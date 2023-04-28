@@ -2,6 +2,7 @@
   "name": "publishpress/wordpress-edd-license",
   "type": "library",
   "description": "EDD license integration library for WordPress plugins",
+  "version": "3.0.0",
   "keywords": [
     "edd",
     "license",
@@ -47,6 +48,26 @@
     "codeception/module-filesystem": "^1.0",
     "codeception/module-cli": "^1.0",
     "codeception/util-universalframework": "^1.0",
-    "codeception/domain-assert": "^1.0"
+    "codeception/domain-assert": "^1.0",
+    "publishpress/version-loader-generator": "^1.0"
+  },
+  "scripts": {
+    "generate-files": [
+      "vendor/bin/version-loader-generator"
+    ],
+    "post-install-cmd": [
+      "@generate-loader-files"
+    ],
+    "post-update-cmd": [
+      "@generate-loader-files"
+    ]
+  },
+  "extra": {
+    "generator": {
+      "lib-class-test": "class_exists('PublishPress\\WordPressEDDLicense\\License')",
+      "src-dir": "src",
+      "action-initialize-priority": "-150",
+      "action-register-priority": "-190"
+    }
   }
 }
