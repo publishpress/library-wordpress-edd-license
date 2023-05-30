@@ -31,7 +31,10 @@
   "autoload": {
     "psr-4": {
       "PublishPress\\WordPressEDDLicense\\": "src/classes/"
-    }
+    },
+    "files": [
+      "src/include.php"
+    ]
   },
   "require": {
     "php": ">=5.6.20",
