@@ -2,8 +2,8 @@
 
 /*****************************************************************
  * This file is generated on composer update command by
- * a custom script. 
- * 
+ * a custom script.
+ *
  * Do not edit it manually!
  ****************************************************************/
 
@@ -21,7 +21,7 @@ class VersionsCest
         $I->assertEquals([
             '2.0.0.1' => 'PublishPress\WordpressEddLicense\initialize2Dot0Dot0Dot1',
             '2.0.0.2' => 'PublishPress\WordpressEddLicense\initialize2Dot0Dot0Dot2',
-            '3.0.1' => 'PublishPress\WordpressEddLicense\initialize3Dot0Dot1',
+            '3.0.2' => 'PublishPress\WordpressEddLicense\initialize3Dot0Dot2',
         ], $registeredVersions);
     }
 
@@ -31,7 +31,7 @@ class VersionsCest
 
         $latestVersion = $versions->latestVersion();
 
-        $I->assertEquals('3.0.1', $latestVersion);
+        $I->assertEquals('3.0.2', $latestVersion);
     }
 
     public function testLatestVersionCallbackIsTheLastOne(WpunitTester $I)
@@ -40,7 +40,7 @@ class VersionsCest
 
         $latestVersionCallback = $versions->latestVersionCallback();
 
-        $I->assertEquals('PublishPress\WordpressEddLicense\initialize3Dot0Dot1', $latestVersionCallback);
+        $I->assertEquals('PublishPress\WordpressEddLicense\initialize3Dot0Dot2', $latestVersionCallback);
     }
 
     public function testInitializeLatestVersion(WpunitTester $I)
@@ -51,7 +51,7 @@ class VersionsCest
 
         $I->assertTrue(class_exists('PublishPress\WordPressEDDLicense\License'));
 
-        $didAction = (bool)did_action('publishpress_wordpress_edd_license_3Dot0Dot1_initialized');
+        $didAction = (bool)did_action('publishpress_wordpress_edd_license_3Dot0Dot2_initialized');
         $I->assertTrue($didAction);
     }
 }
