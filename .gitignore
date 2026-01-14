@@ -3,3 +3,4 @@ vendor
 /.idea
 /.env.testing
 .phpunit.result.cache
+.env
