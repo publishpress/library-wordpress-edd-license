@@ -2,7 +2,7 @@
   "name": "publishpress/wordpress-edd-license",
   "type": "library",
   "description": "EDD license integration library for WordPress plugins",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "keywords": [
     "edd",
     "license",
@@ -39,7 +39,7 @@
   "require": {
     "php": ">=5.6.20",
     "publishpress/pimple-pimple": "~3.2",
-    "alledia/edd-sl-plugin-updater": "^1.6",
+    "alledia/edd-sl-plugin-updater": "^1.6.24",
     "ext-json": "*"
   },
   "require-dev": {
