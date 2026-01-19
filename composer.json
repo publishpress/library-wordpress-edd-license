@@ -2,7 +2,7 @@
   "name": "publishpress/wordpress-edd-license",
   "type": "library",
   "description": "EDD license integration library for WordPress plugins",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "keywords": [
     "edd",
     "license",
