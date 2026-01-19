@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ae71d57c4510eb7859e676d710b36fb",
+    "content-hash": "2a85fecc40003c7f87ba832a9f0a1443",
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
@@ -315,5 +315,5 @@
         "ext-json": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
