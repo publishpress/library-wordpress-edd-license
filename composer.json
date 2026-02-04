@@ -46,7 +46,10 @@
     "publishpress/version-loader-generator": "^1.0"
   },
   "scripts": {
-    "generate-files": [
+    "build": [
+      "@generate-loader-files"
+    ],
+    "generate-loader-files": [
       "vendor/bin/version-loader-generator"
     ],
     "post-install-cmd": [
