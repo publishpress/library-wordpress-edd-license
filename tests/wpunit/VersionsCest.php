@@ -21,7 +21,7 @@ class VersionsCest
         $I->assertEquals([
             '2.0.0.1' => 'PublishPress\WordpressEddLicense\initialize2Dot0Dot0Dot1',
             '2.0.0.2' => 'PublishPress\WordpressEddLicense\initialize2Dot0Dot0Dot2',
-            '3.0.3' => 'PublishPress\WordpressEddLicense\initialize3Dot0Dot3',
+            '3.0.4' => 'PublishPress\WordpressEddLicense\initialize3Dot0Dot4',
         ], $registeredVersions);
     }
 
@@ -31,7 +31,7 @@ class VersionsCest
 
         $latestVersion = $versions->latestVersion();
 
-        $I->assertEquals('3.0.3', $latestVersion);
+        $I->assertEquals('3.0.4', $latestVersion);
     }
 
     public function testLatestVersionCallbackIsTheLastOne(WpunitTester $I)
@@ -40,7 +40,7 @@ class VersionsCest
 
         $latestVersionCallback = $versions->latestVersionCallback();
 
-        $I->assertEquals('PublishPress\WordpressEddLicense\initialize3Dot0Dot3', $latestVersionCallback);
+        $I->assertEquals('PublishPress\WordpressEddLicense\initialize3Dot0Dot4', $latestVersionCallback);
     }
 
     public function testInitializeLatestVersion(WpunitTester $I)
@@ -51,7 +51,7 @@ class VersionsCest
 
         $I->assertTrue(class_exists('PublishPress\WordPressEDDLicense\License'));
 
-        $didAction = (bool)did_action('publishpress_wordpress_edd_license_3Dot0Dot3_initialized');
+        $didAction = (bool)did_action('publishpress_wordpress_edd_license_3Dot0Dot4_initialized');
         $I->assertTrue($didAction);
     }
 }
