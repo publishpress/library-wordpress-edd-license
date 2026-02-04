@@ -35,6 +35,7 @@ codeception.dist.yml export-ignore
 codeception.yml export-ignore
 composer.json export-ignore
 composer.lock export-ignore
+dev-workspace export-ignore
 docker-compose.yml export-ignore
 Gruntfile.js export-ignore
 jsconfig.json export-ignore
