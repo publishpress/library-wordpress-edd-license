@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a85fecc40003c7f87ba832a9f0a1443",
+    "content-hash": "86c154ca94ad7a16791ef7af74bd6d5a",
     "packages": [
         {
             "name": "alledia/edd-sl-plugin-updater",
-            "version": "1.6.24",
+            "version": "1.6.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/edd-sl-plugin-updater.git",
-                "reference": "d3f92cd47a858da15feede854eb4b984fcf28856"
+                "reference": "05efd00f46b7f82eac4b769f691001e09b0796a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/edd-sl-plugin-updater/zipball/d3f92cd47a858da15feede854eb4b984fcf28856",
-                "reference": "d3f92cd47a858da15feede854eb4b984fcf28856",
+                "url": "https://api.github.com/repos/publishpress/edd-sl-plugin-updater/zipball/05efd00f46b7f82eac4b769f691001e09b0796a0",
+                "reference": "05efd00f46b7f82eac4b769f691001e09b0796a0",
                 "shasum": ""
             },
             "require": {
@@ -56,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/publishpress/edd-sl-plugin-updater/issues",
-                "source": "https://github.com/publishpress/edd-sl-plugin-updater/tree/1.6.24"
+                "source": "https://github.com/publishpress/edd-sl-plugin-updater/tree/1.6.25"
             },
-            "time": "2026-01-09T19:19:53+00:00"
+            "time": "2026-03-03T20:32:15+00:00"
         },
         {
             "name": "publishpress/pimple-pimple",
