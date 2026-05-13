@@ -30,6 +30,7 @@
 behat.yml export-ignore
 bin export-ignore
 builder.yml export-ignore
+CHANGELOG.md export-ignore
 circle.yml export-ignore
 codeception.dist.yml export-ignore
 codeception.yml export-ignore
